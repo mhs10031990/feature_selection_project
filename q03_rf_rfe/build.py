@@ -7,5 +7,13 @@ from sklearn.feature_selection import RFE
 from sklearn.ensemble import RandomForestClassifier
 
 
-# Your solution code here
+def rf_rfe(df):
+    X = df.iloc[:,:-1]
+    y = df.iloc[:,-1]
 
+    model =RandomForestClassifier()
+
+    rfe = RFE(model)
+    rfe = rfe.fit(X, y)
+
+    return X.columns.values[rfe.get_support()].tolist()
